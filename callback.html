@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Login – Bestätigung</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #5a00c8;
+            font-size: 28px;
+        }
+
+        .code-box {
+            margin-top: 20px;
+            background: #eee;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 20px;
+            display: inline-block;
+        }
+
+        .warning {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffefef;
+            border-left: 5px solid #ff3b3b;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+
+    <script>
+        function getCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get("code");
+            const box = document.getElementById("codeBox");
+
+            if (!code) {
+                box.innerHTML = "❌ Kein Code erhalten. Bitte versuche den Login erneut.";
+            } else {
+                box.innerHTML = code;
+            }
+        }
+        window.onload = getCode;
+    </script>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Twitch Login abgeschlossen</h1>
+    <p>Dein Twitch Login war erfolgreich. Unten findest du deinen Code.</p>
+
+    <h3>Dein Bestätigungscode:</h3>
+    <div id="codeBox" class="code-box">Lade...</div>
+
+    <h3>Was jetzt?</h3>
+    <p>
+        Kopiere den Code oben und verwende ihn im Discord mit:
+    </p>
+
+    <div class="code-box">/confirm &lt;code&gt;</div>
+
+    <div class="warning">
+        ⚠ <strong>Wichtig:</strong> Teile diesen Code mit niemandem.  
+        Er ist nur für deinen eigenen Discord-Bot-Login gedacht.
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Twitch2Discord Chat-Link Bot – OAuth Callback
+</footer>
+
+</body>
+</html>
