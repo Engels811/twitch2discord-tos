@@ -6,10 +6,10 @@ Chat sync, live alerts, clip updates, event forwarding — fast, clean and autom
 
 ## 🌐 Terms & Policies
 ### ➤ Terms of Service  
-https://YOURNAME.github.io/YOUR-REPO/tos.html
+[https://github.com/Engels811/twitch2discord-tos/tos.html](https://github.com/Engels811/twitch2discord-tos/blob/main/tos.html)
 
 ### ➤ Privacy Policy  
-https://YOURNAME.github.io/YOUR-REPO/privacy.html
+[https://github.com/Engels811/twitch2discord-tos/privacy.html](https://github.com/Engels811/twitch2discord-tos/blob/main/privacy.html)
 
 ---
 
