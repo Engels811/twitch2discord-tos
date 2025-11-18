@@ -1,119 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WonderLife – Twitch2Discord Link</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WonderLife – Neon Network Portal</title>
 
-    <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background: radial-gradient(circle at top, #1d002f, #0b0013 60%);
-            color: #fff;
-            text-align: center;
-        }
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
 
-        /* Neon Glow Effect */
-        .neon {
-            color: #ffffff;
-            text-shadow:
-                0 0 10px #b400ff,
-                0 0 20px #b400ff,
-                0 0 30px #b400ff,
-                0 0 40px #7700ff,
-                0 0 70px #7700ff;
-        }
+/* BODY */
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#06000f;
+    color:#ffffff;
+    overflow-x:hidden;
+    text-align:center;
+    animation:fadeIn 1.5s ease;
+}
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 40px;
-        }
+/* FADE-IN */
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
 
-        .logo {
-            width: 320px;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 25px #9f00ff);
-        }
+/* MULTI-LAYER PARALLAX BACKGROUND */
+.parallax-layer{
+    position:fixed;top:0;left:0;
+    width:120%;height:120%;
+    pointer-events:none;z-index:-3;
+    filter:blur(2px);
+}
+.layer1{
+    background:radial-gradient(circle,rgba(255,0,255,0.12) 1px,transparent 1px);
+    background-size:80px 80px;
+    opacity:0.25;
+    animation:layerMove1 22s linear infinite;
+}
+.layer2{
+    background:radial-gradient(circle,rgba(150,0,255,0.12) 1px,transparent 1px);
+    background-size:55px 55px;
+    opacity:0.15;
+    animation:layerMove2 30s linear infinite;
+}
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
+@keyframes layerMove1{
+    from{transform:translateY(0) rotate(1deg)}
+    to{transform:translateY(200px) rotate(1deg)}
+}
+@keyframes layerMove2{
+    from{transform:translateY(0) rotate(-1deg)}
+    to{transform:translateY(-250px) rotate(-1deg)}
+}
 
-        p {
-            font-size: 18px;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
+/* PARTICLE FIELD */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-2}
 
-        /* BUTTONS */
-        .btn {
-            display: block;
-            width: 260px;
-            margin: 12px auto;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(50, 0, 70, 0.6);
-            border: 2px solid #a200ff;
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(6px);
-        }
+/* PAGE */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+}
 
-        .btn:hover {
-            background: rgba(150, 0, 255, 0.7);
-            transform: scale(1.04);
-            box-shadow: 0 0 18px #b400ff;
-        }
+/* LOGO */
+.logo{
+    width:350px;margin-top:60px;margin-bottom:10px;
+    filter:drop-shadow(0 0 30px #d000ff);
+    animation:logoPulse 3s ease-in-out infinite alternate;
+}
+@keyframes logoPulse{
+    0%{filter:drop-shadow(0 0 15px #9600ff)}
+    100%{filter:drop-shadow(0 0 40px #ff00ff)}
+}
 
-        hr {
-            margin: 40px auto;
-            width: 50%;
-            border: 0;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
+/* TITLE */
+h1{
+    font-size:50px;font-weight:800;margin-bottom:5px;
+    text-shadow:0 0 25px #d300ff,0 0 45px #7a00ff;
+    animation:pulseText 3s infinite alternate;
+}
+@keyframes pulseText{
+    0%{text-shadow:0 0 15px #d300ff}
+    100%{text-shadow:0 0 40px #ff00ff}
+}
 
-        footer {
-            margin-top: 50px;
-            opacity: 0.5;
-            font-size: 14px;
-        }
-    </style>
+.subtitle{font-size:18px;opacity:.85;margin-bottom:35px}
+
+/* BUTTONS */
+.btn{
+    display:block;width:280px;margin:14px auto;padding:16px;
+    border-radius:12px;
+    background:rgba(80,0,120,.55);
+    border:2px solid #b200ff;
+    color:#fff;font-weight:600;text-decoration:none;
+    backdrop-filter:blur(7px);
+    transition:all .25s ease;
+    box-shadow:0 0 12px rgba(180,0,255,0.25);
+}
+.btn:hover{
+    background:rgba(180,0,255,.9);
+    transform:scale(1.06);
+    box-shadow:0 0 25px #ff00ff;
+}
+
+/* DISCORD SPECIAL BUTTON */
+.discord{
+    background:linear-gradient(90deg,rgba(110,0,255,.6),rgba(255,0,255,.6));
+    border:2px solid #ff42ff;
+    animation:discordGlow 2s infinite ease-in-out;
+}
+@keyframes discordGlow{
+    0%{box-shadow:0 0 15px #ff00ff}
+    100%{box-shadow:0 0 35px #b300ff}
+}
+
+hr{opacity:.25;width:55%;margin:45px auto}
+
+footer{font-size:14px;opacity:.5;margin-top:35px}
+
+/* SECTION TITLES */
+.neon{
+    text-shadow:0 0 15px #ff00ff,0 0 30px #b400ff,0 0 45px #7a00ff;
+    margin-bottom:20px;
+}
+
+/* VIDEO CONTAINER */
+.video-container{
+    position:relative;
+    width:90%;max-width:1120px;
+    margin:0 auto;
+    padding-bottom:56.25%;
+    border-radius:15px;
+    border:2px solid #ff00ff;
+    box-shadow:0 0 25px #b000ff;
+    background:rgba(100,0,150,0.25);
+    overflow:hidden;
+    backdrop-filter:blur(8px);
+    animation:videoGlow 3s infinite alternate;
+}
+@keyframes videoGlow{
+    0%{box-shadow:0 0 18px #b000ff}
+    100%{box-shadow:0 0 40px #ff00ff}
+}
+.video-container iframe{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+}
+
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<!-- BACKGROUND LAYERS -->
+<div class="parallax-layer layer1"></div>
+<div class="parallax-layer layer2"></div>
 
-        <!-- LOGO (du kannst dein PNG ersetzen) -->
-        <img class="logo" src="https://raw.githubusercontent.com/Engels811/twitch2discord-tos/main/wonderlife_logo.png" onerror="this.style.display='none'" />
+<!-- PARTICLES -->
+<canvas id="particles"></canvas>
 
-        <h1 class="neon">WonderLife Network</h1>
-        <p>Official Twitch2Discord Chat-Link · OAuth · Terms · Privacy</p>
+<!-- MAIN -->
+<div class="container">
 
-        <a href="callback" class="btn">OAuth Callback</a>
-        <a href="tos.html" class="btn">Terms of Service</a>
-        <a href="privacy.html" class="btn">Privacy Policy</a>
+    <img class="logo"
+         src="https://raw.githubusercontent.com/Engels811/twitch2discord-tos/main/wonderlife_logo.png"
+         alt="WonderLife Network Logo">
 
-        <hr>
+    <h1>WonderLife Network</h1>
+    <p class="subtitle">Twitch2Discord Chat-Link · OAuth · Cyber Neon Portal</p>
 
-        <p>Made for the WonderLife Ecosystem · Secure · Fast · Automatic</p>
+    <!-- CORE LINKS -->
+    <a class="btn" href="callback">OAuth Callback</a>
+    <a class="btn" href="tos.html">Terms of Service</a>
+    <a class="btn" href="privacy.html">Privacy Policy</a>
 
-        <footer>
-            © 2025 WonderLife Network – All Rights Reserved
-        </footer>
+    <hr>
 
+    <h2 class="neon">WonderLife Network Links</h2>
+
+    <a class="btn" href="https://wonderlife.city" target="_blank">🌐 WonderLife City</a>
+    <a class="btn" href="https://www.getshirts.de/index.php?page=shop&id=engels811" target="_blank">👕 WL Merch Shop</a>
+    <a class="btn" href="https://wonderlife-store.tebex.io" target="_blank">🛒 WonderLife Tebex Store</a>
+    <a class="btn" href="https://status.wonderlife-city.de" target="_blank">📡 WL System Status</a>
+
+    <!-- SOCIALS -->
+    <a class="btn" href="https://www.facebook.com/WonderLife.City.Roleplay" target="_blank">📘 Facebook</a>
+    <a class="btn" href="https://www.instagram.com/wonderlife.city/" target="_blank">📸 Instagram</a>
+    <a class="btn" href="https://www.youtube.com/@Wonder-Life-City" target="_blank">▶️ YouTube</a>
+
+    <!-- DISCORD SPECIAL -->
+    <a class="btn discord" href="https://discord.gg/njY4NEupUB" target="_blank">🔗 WonderLife Network Discord</a>
+
+    <hr>
+
+    <!-- YOUTUBE VIDEOS -->
+    <h2 class="neon" style="margin-top:60px;">WonderLife City Trailer</h2>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/rtG3kD7KiCc"
+            title="WonderLife City Trailer 1"
+            frameborder="0" allowfullscreen>
+        </iframe>
     </div>
+
+    <div class="video-container" style="margin-top:40px;">
+        <iframe src="https://www.youtube.com/embed/bNO7weDrh94"
+            title="WonderLife City Trailer 2"
+            frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+
+    <hr>
+
+    <p>Made for the WonderLife Ecosystem · Secure · Neon Powered</p>
+    <footer>© 2025 WonderLife Network · All Rights Reserved</footer>
+
+</div>
+
+<!-- PARTICLES SCRIPT -->
+<script>
+const c=document.getElementById("particles"),x=c.getContext("2d");
+let W,H,P=[];
+function R(){W=c.width=innerWidth;H=c.height=innerHeight}
+addEventListener("resize",R);R();
+for(let i=0;i<70;i++){
+P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*3+1,dx:(Math.random()-.5)*0.6,dy:(Math.random()-.5)*0.6});
+}
+function D(){
+x.clearRect(0,0,W,H);
+x.fillStyle="rgba(255,0,255,0.75)";
+P.forEach(p=>{
+x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();
+p.x+=p.dx;p.y+=p.dy;
+if(p.x<0||p.x>W)p.dx*=-1;
+if(p.y<0||p.y>H)p.dy*=-1;
+});
+requestAnimationFrame(D);
+}
+D();
+</script>
 
 </body>
 </html>
